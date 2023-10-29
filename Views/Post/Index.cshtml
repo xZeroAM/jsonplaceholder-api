@@ -1,0 +1,66 @@
+@model IEnumerable<api_post.DTO.PostDTO>
+
+@{
+    ViewData["Title"] = "Lista Post";
+}
+
+<h1>Lista de Posts</h1>
+<br>
+<a class="nav-link text-dark" asp-area="" asp-controller="Post" asp-action="Create" style="border: 1px black solid; width: auto; display: inline; border-radius: 5px;">Crear nuevo post</a>
+<br>
+<br>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                User ID
+            </th>
+            <th>
+                ID
+            </th>
+            <th>
+                Title
+            </th>
+            <th>
+                Body
+            </th>
+            <th>
+                Detail
+            </th>
+            <th>
+                Delete
+            </th>
+            <th>
+                Update
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.userId
+                </td>
+                <td>
+                    @item.id
+                </td>
+                <td>
+                    @item.title
+                </td>
+                <td>
+                    @item.body
+                </td>
+                <td>
+                    <a asp-controller="Post" asp-action="GetPost" asp-route-id="@item.id">Detail</a>
+                </td>
+                <td>
+                    <a asp-controller="Post" asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                </td>
+                <td>
+                    <a asp-controller="Post" asp-action="Update" asp-route-id="@item.id">Update</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
